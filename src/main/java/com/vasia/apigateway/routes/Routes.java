@@ -15,7 +15,18 @@ public class Routes {
     @Bean
     public RouterFunction<ServerResponse> productRoutes(){
         return route("product_service")
-                .GET("/api/product", http()).before(uri("http://localhost:5050"))
+                .GET("/api/product/**", http()).before(uri("http://localhost:5050"))
+                .POST("/api/product", http()).before(uri("http://localhost:5050"))
+                .DELETE("/api/product/**", http()).before(uri("http://localhost:5050"))
+                .PUT("/api/product/**", http()).before(uri("http://localhost:5050"))
+                .build();
+    }
+
+
+    @Bean
+    public RouterFunction<ServerResponse> orderServiceRoutes(){
+        return route("order_service")
+                .GET("/api/order", http()).before(uri("http://localhost:8081"))
                 .build();
     }
 
