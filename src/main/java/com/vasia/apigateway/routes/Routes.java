@@ -30,4 +30,12 @@ public class Routes {
                 .build();
     }
 
+
+    @Bean
+    public RouterFunction<ServerResponse> inventoryServiceRoutes(){
+        return route("inventory_service")
+                .GET("/api/inventory/available/**", http()).before(uri("http://localhost:8082"))
+                .build();
+    }
+
 }
